@@ -77,7 +77,6 @@ class DruidUi:
         )
         self.key_bindings = KeyBindings()
 
-        @self.key_bindings.add('c-c', eager=True)
         @self.key_bindings.add('c-q', eager=True)
         def quit_druid(event):
             event.app.exit()
@@ -251,8 +250,9 @@ class DruidRepl(UiPage):
         pgdn = lambda evt: self.pagedown(evt, self.output_field)
         self.ui.key_bindings.add('pageup')(pgup)
         self.ui.key_bindings.add('escape', 'v')(pgup)
+        self.ui.key_bindings.add('c-u')(pgup)
         self.ui.key_bindings.add('pagedown')(pgdn)
-        self.ui.key_bindings.add('c-v')(pgdn)
+        self.ui.key_bindings.add('c-d')(pgdn)
         self.ui.layout.focus(self.input_field)
 
     def output(self, st):
